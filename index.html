@@ -7,42 +7,48 @@
 
     <!-- Dynamic meta tags based on URL parameters -->
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
 
-        // Customize name, icon, and URL based on parameters or use defaults
-        const appName = urlParams.get('name') || 'App Name';
-        const appIcon = urlParams.get('icon') || 'https://icon-library.com/images/app-icon-guidelines/app-icon-guidelines-1.jpg';
-        const redirectURL = urlParams.get('url');
-        const iframeURL = urlParams.get('iframe'); // Fix the variable name here
+            // Customize name, icon, and URL based on parameters or use defaults
+            const appName = urlParams.get('name') || 'App Name';
+            const appIcon = urlParams.get('icon') || 'https://icon-library.com/images/app-icon-guidelines/app-icon-guidelines-1.jpg';
+            const redirectURL = urlParams.get('url');
+            const iframeURL = urlParams.get('iframe');
 
-        document.title = appName;
+            document.title = appName;
 
-        // Add manifest link dynamically
-        const manifestLink = document.createElement('link');
-        manifestLink.rel = 'manifest';
-        manifestLink.href = `data:application/manifest+json,${encodeURIComponent(JSON.stringify({
-            "name": appName,
-            "short_name": appName,
-            "start_url": "/",
-            "display": "standalone",
-            "icons": [
-                {
-                    "src": appIcon,
-                    "sizes": "192x192",
-                    "type": "image/png"
-                }
-            ],
-            // You can add more manifest properties here
-        }))}`;
-        document.head.appendChild(manifestLink);
+            // Add manifest link dynamically
+            const manifestLink = document.createElement('link');
+            manifestLink.rel = 'manifest';
+            manifestLink.href = `data:application/manifest+json,${encodeURIComponent(JSON.stringify({
+                "name": appName,
+                "short_name": appName,
+                "start_url": "/",
+                "display": "standalone",
+                "icons": [
+                    {
+                        "src": appIcon,
+                        "sizes": "192x192",
+                        "type": "image/png"
+                    }
+                ],
+                // You can add more manifest properties here
+            }))}`;
+            document.head.appendChild(manifestLink);
 
-        // Check if the page is opened as a PWA and redirect if the URL is provided
-        if (window.matchMedia('(display-mode: standalone)').matches && redirectURL) {
-            window.location.href = redirectURL;
-        }
-    </script>
-    <script>
-        if (iframeURL) {
+            // Check if the page is opened as a PWA and redirect if the URL is provided
+            if (window.matchMedia('(display-mode: standalone)').matches && redirectURL) {
+                window.location.href = redirectURL;
+            }
+
+            // Create iframe if iframeURL is provided
+            if (iframeURL) {
+                createFullscreenIframe(iframeURL);
+            }
+        });
+
+        function createFullscreenIframe(url) {
             // Create an iframe element
             var iframe = document.createElement("iframe");
 
@@ -50,7 +56,7 @@
             iframe.style.width = "100%";
             iframe.style.height = "100%";
             iframe.style.border = "none";
-            iframe.src = iframeURL;
+            iframe.src = url;
 
             // Append the iframe to the body
             document.body.appendChild(iframe);
@@ -59,6 +65,6 @@
 </head>
 <body>
     <h1>Add To Homescreen</h1>
-    <p>Share > Add to Homescreen v2</p>
+    <p>Share > Add to Homescreen v3</p>
 </body>
 </html>

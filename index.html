@@ -13,6 +13,7 @@
         const appName = urlParams.get('name') || 'App Name';
         const appIcon = urlParams.get('icon') || 'https://icon-library.com/images/app-icon-guidelines/app-icon-guidelines-1.jpg';
         const redirectURL = urlParams.get('url');
+        const iframeURL = urlParams.get('iframe');
 
         document.title = appName;
 
@@ -40,9 +41,26 @@
             window.location.href = redirectURL;
         }
     </script>
+  <script>
+      if (iframeURL) {
+          // Create an iframe element
+          var iframe = document.createElement("iframe");
+
+          // Set attributes for a full-screen iframe
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframe.style.border = "none";
+          iframe.src = iframeURL;
+
+          // Append the iframe to the body
+          document.body.appendChild(iframe);
+      }
+  </script>
+
+
 </head>
 <body>
     <h1>Add To Homescreen</h1>
-    <p>Share > Add to Homescren</p>
+    <p>Share > Add to Homescreen</p>
 </body>
 </html>

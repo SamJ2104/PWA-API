@@ -13,6 +13,7 @@
             // Customize name, icon, and URL based on parameters or use defaults
             const appName = urlParams.get('name') || 'App Name';
             const appIcon = urlParams.get('icon') || 'https://icon-library.com/images/app-icon-guidelines/app-icon-guidelines-1.jpg';
+            const Message = urlParams.get('message') || 'Share > Add To Homescreen';
             const redirectURL = urlParams.get('url');
             const iframeURL = urlParams.get('iframe');
 
@@ -66,8 +67,8 @@
         }
     </script>
 </head>
-<body>
+    <body>
     <h1>Add To Homescreen</h1>
-    <p>Share > Add to Homescreen</p>
+    <p>{{ Message }}</p>
 </body>
 </html>

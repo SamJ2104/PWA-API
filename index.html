@@ -17,8 +17,9 @@
             const redirectURL = urlParams.get('url');
             const iframeURL = urlParams.get('iframe');
             const Message = urlParams.get('message') || 'Share > Add To Homescreen';
+            const customTitle = urlParams.get('title') || 'Add to Homescreen';
 
-            document.title = appName;
+            document.title = customTitle;
 
             // Add manifest link dynamically
             const manifestLink = document.createElement('link');
@@ -49,7 +50,7 @@
                 createFullscreenIframe(iframeURL);
             }
 
-            // Set Message in the body
+            // Set Message and Title in the body
             document.getElementById("MessageID").innerText = Message;
         });
 

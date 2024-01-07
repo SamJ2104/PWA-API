@@ -53,8 +53,11 @@
             var iframe = document.createElement("iframe");
 
             // Set attributes for a full-screen iframe
-            iframe.style.width = "100%";
-            iframe.style.height = "100%";
+            iframe.style.width = "100vw";
+            iframe.style.height = "100vh";
+            iframe.style.position = "absolute";
+            iframe.style.top = "0";
+            iframe.style.left = "0";
             iframe.style.border = "none";
             iframe.src = url;
 
@@ -65,6 +68,6 @@
 </head>
 <body>
     <h1>Add To Homescreen</h1>
-    <p>Share > Add to Homescreen v3</p>
+    <p>Share > Add to Homescreen</p>
 </body>
 </html>

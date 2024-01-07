@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
             const appIcon = urlParams.get('icon') || 'https://icon-library.com/images/app-icon-guidelines/app-icon-guidelines-1.jpg';
             const redirectURL = urlParams.get('url');
             const iframeURL = urlParams.get('iframe');
+            const Message = urlParams.get('message') || 'Share > Add To Homescreen';
 
             document.title = appName;
 
@@ -46,6 +48,9 @@
             if (iframeURL) {
                 createFullscreenIframe(iframeURL);
             }
+
+            // Set Message in the body
+            document.getElementById("MessageID").innerText = Message;
         });
 
         function createFullscreenIframe(url) {
@@ -65,15 +70,11 @@
             document.body.appendChild(iframe);
         }
     </script>
-    <script>document.getElementById("Message").innerText = Message;</script>
 </head>
-  <body>
-      <h1>Add To Homescreen</h1>
-      <p id="MessageID"></p>
 
-      <script>
-        const Message = urlParams.get('message') || 'Share > Add To Homescreen'
-          document.getElementById("MessageID").innerText = Message;
-      </script>
-  </body>
+<body>
+    <h1>Add To Homescreen</h1>
+    <p id="MessageID"></p>
+</body>
+
 </html>
